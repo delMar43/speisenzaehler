@@ -26,7 +26,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="242"/>
+        <TopLine Value="254"/>
         <CursorPos X="50" Y="262"/>
         <UsageCount Value="39"/>
         <Loaded Value="True"/>
@@ -124,7 +124,7 @@
         <UnitName Value="DailySum"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="22"/>
+        <TopLine Value="56"/>
         <CursorPos X="12" Y="53"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -266,6 +266,15 @@
     </JumpHistory>
   </ProjectSession>
   <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="266"/>
+      </Item1>
+    </BreakPoints>
     <Watches Count="1">
       <Item1>
         <Expression Value="Create"/>
