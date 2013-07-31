@@ -10,19 +10,19 @@ uses
 type
   TDay = class
   private
-    FFoodIdx: integer;
+    FMealIdx: integer;
     FDinnerIdx: integer;
     FLunchIdx: integer;
   public
     constructor Create();
-    function GetFoodIdx(): integer;
-    procedure SetFoodIdx(value: integer);
+    function GetMealIdx(): integer;
+    procedure SetMealIdx(value: integer);
     function GetDinnerIdx(): integer;
     procedure SetDinnerIdx(value: integer);
     function GetLunchIdx(): integer;
     procedure SetLunchIdx(value: integer);
   published
-    property MealIdx: integer read GetFoodIdx write SetFoodIdx default 0;
+    property MealIdx: integer read GetMealIdx write SetMealIdx default 0;
     property DinnerIdx: integer read GetDinnerIdx write SetDinnerIdx default 0;
     property LunchIdx: integer read GetLunchIdx write SetLunchIdx default 0;
   end;
@@ -31,19 +31,19 @@ implementation
 
   constructor TDay.Create();
   begin
-    FFoodIdx := 1;
+    FMealIdx := 1;
     FDinnerIdx := 0;
     FLunchIdx := 0;
   end;
 
-  function TDay.GetFoodIdx(): integer;
+  function TDay.GetMealIdx(): integer;
   begin
-    GetFoodIdx := FFoodIdx;
+    GetMealIdx := FMealIdx;
   end;
 
-  procedure TDay.SetFoodIdx(value: integer);
+  procedure TDay.SetMealIdx(value: integer);
   begin
-    FFoodIdx := value;
+    FMealIdx := value;
   end;
 
   function TDay.GetDinnerIdx(): integer;

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, SynHighlighterPHP, Forms, Controls,
-  Dialogs, StdCtrls, Grids, ComCtrls, Menus, ExtCtrls, Day, Patient;
+  Dialogs, StdCtrls, Grids, ComCtrls, Menus, ExtCtrls, Day, Patient, DailySum;
 
 type
 
@@ -58,7 +58,8 @@ type
     procedure SelectMealChoice(ChoiceIndex: integer);
     procedure GoToNextMeal();
     procedure GoToPreviousMeal();
-    procedure RenderCurrentDay();
+    procedure RenderInputDisplay();
+    procedure RenderSumDisplay();
     procedure CreateNewPatient();
   public
     { public declarations }
@@ -110,7 +111,7 @@ procedure TFormMain.TabInputDisplayChange(Sender: TObject);
 begin
   CurrentInputIndex := TabInputDisplay.TabIndex;
 
-  RenderCurrentDay();
+  RenderInputDisplay();
 end;
 
 procedure TFormMain.FormKeyPress(Sender: TObject; var Key: char);
@@ -145,7 +146,7 @@ end;
 procedure TFormMain.SelectMeal(MealIndex: integer);
 begin
   CurrentPatient.GetDay(CurrentInputIndex).MealIdx := MealIndex;
-  RenderCurrentDay();
+  RenderInputDisplay();
 end;
 
 procedure TFormMain.SelectMealChoice(ChoiceIndex: integer);
@@ -157,7 +158,7 @@ begin
       CurrentPatient.GetDay(CurrentInputIndex).DinnerIdx := ChoiceIndex;
     end;
 
-  RenderCurrentDay();
+  RenderInputDisplay();
 end;
 
 procedure TFormMain.GoToNextMeal();
@@ -181,7 +182,7 @@ begin
 
   CurrentMealIsLunch := not CurrentMealIsLunch;
 
-  RenderCurrentDay();
+  RenderInputDisplay();
 end;
 
 procedure TFormMain.GoToPreviousMeal();
@@ -207,10 +208,10 @@ begin
       CurrentMealIsLunch := not CurrentMealIsLunch;
     end;
 
-  RenderCurrentDay();
+  RenderInputDisplay();
 end;
 
-procedure TFormMain.RenderCurrentDay();
+procedure TFormMain.RenderInputDisplay();
 var
   CurrentDay: TDay;
   FoodLabel: TLabel;
@@ -244,6 +245,38 @@ begin
 
   TabDayDisplay.TabIndex := CurrentInputIndex;
   TabInputDisplay.TabIndex := CurrentInputIndex;
+
+  RenderSumDisplay();
+end;
+
+procedure TFormMain.RenderSumDisplay();
+var
+  CalculatedDayIndex: integer;
+  ItPatient: ^TPatient;
+  ItDay: TDay;
+  Sum: TDailySum;
+  CurMealIndex: integer;
+begin
+  CalculatedDayIndex := TabDayDisplay.TabIndex;
+
+  Sum := TDailySum.Create;
+
+{  for ItPatient in PatientList do
+  begin
+   ItDay := ItPatient^.GetDay(CalculatedDayIndex);
+   if (ItDay.LunchIdx = 1) then
+     Sum.IncLunch1Sum(ItDay.MealIdx);
+   if (ItDay.LunchIdx = 2) then
+     Sum.IncLunch2Sum(ItDay.MealIdx);
+   if (ItDay.DinnerIdx = 1) then
+     Sum.IncDinner1Sum(ItDay.MealIdx);
+   if (ItDay.DinnerIdx = 2) then
+     Sum.IncDinner2Sum(ItDay.MealIdx);
+   if (ItDay.DinnerIdx = 3) then
+     Sum.IncDinner3Sum(ItDay.MealIdx);
+  end;}
+
+  GridSums.Cells[0, 0] := 'abc';
 end;
 
 procedure TFormMain.FormMainCreate(Sender: TObject);
@@ -279,7 +312,7 @@ begin
   CreateNewPatient();
   CurrentPatientIndex := 0;
 
-  RenderCurrentDay();
+  RenderInputDisplay();
 end;
 
 procedure TFormMain.CreateNewPatient();
