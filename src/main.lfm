@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 390
+  Left = 301
   Height = 600
-  Top = 122
+  Top = 134
   Width = 732
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -13,7 +13,7 @@ object FormMain: TFormMain
   OnCreate = FormMainCreate
   OnKeyPress = FormKeyPress
   LCLVersion = '1.0.10.0'
-  object Label1: TLabel
+  object LabelCurrentPatientIndex: TLabel
     Left = 17
     Height = 16
     Top = 11
@@ -254,7 +254,7 @@ object FormMain: TFormMain
       'Tag 10'
     )
     TabOrder = 1
-    object GridData1: TStringGrid
+    object GridSums: TStringGrid
       Left = 28
       Height = 200
       Top = 36

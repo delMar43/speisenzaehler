@@ -13,8 +13,8 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
-    GridData1: TStringGrid;
-    Label1: TLabel;
+    GridSums: TStringGrid;
+    LabelCurrentPatientIndex: TLabel;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -58,9 +58,8 @@ type
     procedure SelectMealChoice(ChoiceIndex: integer);
     procedure GoToNextMeal();
     procedure GoToPreviousMeal();
-    function GetCurrentDayIndex(): integer;
     procedure RenderCurrentDay();
-    procedure CreateFirstPatientAndFirstDay();
+    procedure CreateNewPatient();
   public
     { public declarations }
   end;
@@ -75,8 +74,11 @@ var
   CurrentPatient: TPatient;
   CurrentMealIsLunch: boolean;
 
+  CurrentPatientIndex: integer;
+  CurrentInputIndex: integer;
   StartDay: integer;
   EndDay: integer;
+  NrOfDays: integer;
 
 implementation
 
@@ -140,7 +142,7 @@ end;
 
 procedure TFormMain.SelectMeal(MealIndex: integer);
 begin
-  CurrentPatient.GetDay(GetCurrentDayIndex()).MealIdx := MealIndex;
+  CurrentPatient.GetDay(CurrentInputIndex).MealIdx := MealIndex;
   RenderCurrentDay();
 end;
 
@@ -148,19 +150,36 @@ procedure TFormMain.SelectMealChoice(ChoiceIndex: integer);
 begin
   if (CurrentMealIsLunch) then
     begin
-      CurrentPatient.GetDay(GetCurrentDayIndex()).LunchIdx := ChoiceIndex;
+      CurrentPatient.GetDay(CurrentInputIndex).LunchIdx := ChoiceIndex;
     end else begin
-      CurrentPatient.GetDay(GetCurrentDayIndex()).DinnerIdx := ChoiceIndex;
+      CurrentPatient.GetDay(CurrentInputIndex).DinnerIdx := ChoiceIndex;
     end;
 
   RenderCurrentDay();
 end;
 
 procedure TFormMain.GoToNextMeal();
+var
+  NewInputIndex: integer;
 begin
 
   if (not CurrentMealIsLunch) then
     begin
+      NewInputIndex := CurrentInputIndex +1;
+
+      if (NewInputIndex >= NrOfDays) then
+        begin
+          NewInputIndex := 0;
+
+          CreateNewPatient();
+          //new patient
+        end;
+
+      TabDayDisplay.TabIndex := NewInputIndex;
+      TabInputDisplay.TabIndex := NewInputIndex;
+
+      CurrentInputIndex := NewInputIndex;
+
       //if not last day go to next day, set lunch as active meal
 
       //if last day goto next patient, first day, set lunch as active meal
@@ -198,7 +217,7 @@ begin
   ShapeLunchActive.Visible := CurrentMealIsLunch;
   ShapeDinnerActive.Visible := not CurrentMealIsLunch;
 
-  CurrentDay := CurrentPatient.GetDay(GetCurrentDayIndex());
+  CurrentDay := CurrentPatient.GetDay(CurrentInputIndex);
 
   ShapeVerticalSelection.Visible := True;
   ShapeCurrentLunch.Visible := True;
@@ -208,6 +227,8 @@ begin
   LunchLabel := LunchLabelArray[CurrentDay.LunchIdx];
   DinnerLabel := DinnerLabelArray[CurrentDay.DinnerIdx];
 
+  LabelCurrentPatientIndex.Caption := 'Patient ' + IntToStr(CurrentPatientIndex +1);
+
   ShapeVerticalSelection.Width := FoodLabel.Width;
   ShapeVerticalSelection.Left := FoodLabel.Left;
 
@@ -216,11 +237,6 @@ begin
 
   ShapeCurrentDinner.Top := DinnerLabel.Top;
   ShapeCurrentDinner.Height := DinnerLabel.Height;
-end;
-
-function TFormMain.GetCurrentDayIndex() : integer;
-begin
-  GetCurrentDayIndex := TabInputDisplay.TabIndex;
 end;
 
 procedure TFormMain.FormMainCreate(Sender: TObject);
@@ -244,26 +260,31 @@ begin
   DinnerLabelArray[2] := Label16;
   DinnerLabelArray[3] := Label17;
 
+  PatientList := TList.Create();
+
+  CurrentInputIndex := 0;
   StartDay := 4;
   EndDay := 10;
-
+  NrOfDays := (EndDay - StartDay +1);
+  CurrentPatientIndex := 0;
   CurrentMealIsLunch := True;
 
-  CreateFirstPatientAndFirstDay();
+  CreateNewPatient();
+  CurrentPatientIndex := 0;
 
   RenderCurrentDay();
 end;
 
-procedure TFormMain.CreateFirstPatientAndFirstDay();
+procedure TFormMain.CreateNewPatient();
 var
-  NrOfDays: integer;
-  FirstDay: TDay;
+  NewPatient: TPatient;
 begin
-  NrOfDays := (EndDay - StartDay +1);
-  CurrentPatient := TPatient.Create(NrOfDays);
-  FirstDay := TDay.Create();
+  NewPatient := TPatient.Create(NrOfDays);
+  PatientList.Add(NewPatient);
 
-  CurrentPatient.AddDay(FirstDay);
+  CurrentPatient := NewPatient;
+
+  CurrentPatientIndex := CurrentPatientIndex +1;
 end;
 
 end.

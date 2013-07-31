@@ -11,28 +11,24 @@ type
   TPatient = class
   private
     FDayArray: array of TDay;
-    FAddedDays: integer;
   public
     constructor Create(NrOfDays: integer);
-    procedure AddDay(Day: TDay);
-    function GetDay(Index: integer) : TDay;
+    function GetDay(Index: integer): TDay;
   end;
 
 implementation
 
 constructor TPatient.Create(NrOfDays: integer);
+var
+  DayIdx: integer;
+  NewDay: TDay;
 begin
   SetLength(FDayArray, NrOfDays);
-end;
-
-procedure TPatient.AddDay(Day: TDay);
-var
-  Index: integer;
-begin
-  Index := FAddedDays;
-  FDayArray[Index] := Day;
-
-  FAddedDays := FAddedDays +1;
+  for DayIdx := 0 to NrOfDays do
+  begin
+    NewDay := TDay.Create();
+    FDayArray[DayIdx] := NewDay;
+  end;
 end;
 
 function TPatient.GetDay(Index: integer) : TDay;
