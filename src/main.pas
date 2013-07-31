@@ -108,7 +108,9 @@ end;
 
 procedure TFormMain.TabInputDisplayChange(Sender: TObject);
 begin
+  CurrentInputIndex := TabInputDisplay.TabIndex;
 
+  RenderCurrentDay();
 end;
 
 procedure TFormMain.FormKeyPress(Sender: TObject; var Key: char);
@@ -172,17 +174,9 @@ begin
           NewInputIndex := 0;
 
           CreateNewPatient();
-          //new patient
         end;
 
-      TabDayDisplay.TabIndex := NewInputIndex;
-      TabInputDisplay.TabIndex := NewInputIndex;
-
       CurrentInputIndex := NewInputIndex;
-
-      //if not last day go to next day, set lunch as active meal
-
-      //if last day goto next patient, first day, set lunch as active meal
     end;
 
   CurrentMealIsLunch := not CurrentMealIsLunch;
@@ -191,17 +185,27 @@ begin
 end;
 
 procedure TFormMain.GoToPreviousMeal();
+var
+  SwitchMeals: boolean;
 begin
 
+  SwitchMeals := True;
   if (CurrentMealIsLunch) then
     begin
-      //if not first day, go to previous day, set dinner as active meal
-
-      //if first day, do nothing
+      if (CurrentInputIndex > 0) then
+        begin
+          CurrentInputIndex := CurrentInputIndex -1;
+        end else begin
+          SwitchMeals := False;
+        end;
     end else begin
 
     end;
-  CurrentMealIsLunch := not CurrentMealIsLunch;
+
+  if (SwitchMeals) then
+    begin
+      CurrentMealIsLunch := not CurrentMealIsLunch;
+    end;
 
   RenderCurrentDay();
 end;
@@ -237,6 +241,9 @@ begin
 
   ShapeCurrentDinner.Top := DinnerLabel.Top;
   ShapeCurrentDinner.Height := DinnerLabel.Height;
+
+  TabDayDisplay.TabIndex := CurrentInputIndex;
+  TabInputDisplay.TabIndex := CurrentInputIndex;
 end;
 
 procedure TFormMain.FormMainCreate(Sender: TObject);
