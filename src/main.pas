@@ -67,7 +67,7 @@ type
 
 var
   FormMain: TFormMain;
-  PatientList: TList;
+  PatientList: array of TPatient;
   FoodLabelArray: array [1..9] of TLabel;
   LunchLabelArray: array [0..2] of TLabel;
   DinnerLabelArray: array [0..3] of TLabel;
@@ -252,18 +252,18 @@ end;
 procedure TFormMain.RenderSumDisplay();
 var
   CalculatedDayIndex: integer;
-  ItPatient: ^TPatient;
+  ItPatient: TPatient;
   ItDay: TDay;
   Sum: TDailySum;
   CurMealIndex: integer;
 begin
   CalculatedDayIndex := TabDayDisplay.TabIndex;
 
-  Sum := TDailySum.Create;
+  Sum := TDailySum.Create(Length(FoodLabelArray));
 
-{  for ItPatient in PatientList do
+  for ItPatient in PatientList do
   begin
-   ItDay := ItPatient^.GetDay(CalculatedDayIndex);
+   ItDay := ItPatient.GetDay(CalculatedDayIndex);
    if (ItDay.LunchIdx = 1) then
      Sum.IncLunch1Sum(ItDay.MealIdx);
    if (ItDay.LunchIdx = 2) then
@@ -274,9 +274,18 @@ begin
      Sum.IncDinner2Sum(ItDay.MealIdx);
    if (ItDay.DinnerIdx = 3) then
      Sum.IncDinner3Sum(ItDay.MealIdx);
-  end;}
+  end;
 
-  GridSums.Cells[0, 0] := 'abc';
+  for CurMealIndex := 1 to Length(FoodLabelArray) do
+  begin
+   GridSums.Cells[CurMealIndex, 1] := IntToStr(Sum.GetLunch1Sum(CurMealIndex));
+   GridSums.Cells[CurMealIndex, 2] := IntToStr(Sum.GetLunch2Sum(CurMealIndex));
+
+   GridSums.Cells[CurMealIndex, 5] := IntToStr(Sum.GetDinner1Sum(CurMealIndex));
+   GridSums.Cells[CurMealIndex, 6] := IntToStr(Sum.GetDinner2Sum(CurMealIndex));
+   GridSums.Cells[CurMealIndex, 7] := IntToStr(Sum.GetDinner3Sum(CurMealIndex));
+  end;
+
 end;
 
 procedure TFormMain.FormMainCreate(Sender: TObject);
@@ -300,8 +309,6 @@ begin
   DinnerLabelArray[2] := Label16;
   DinnerLabelArray[3] := Label17;
 
-  PatientList := TList.Create();
-
   CurrentInputIndex := 0;
   StartDay := 4;
   EndDay := 10;
@@ -320,9 +327,9 @@ var
   NewPatient: TPatient;
 begin
   NewPatient := TPatient.Create(NrOfDays);
-  PatientList.Add(NewPatient);
-
   CurrentPatient := NewPatient;
+  SetLength(PatientList, CurrentPatientIndex+1);
+  PatientList[CurrentPatientIndex] := NewPatient;
 
   CurrentPatientIndex := CurrentPatientIndex +1;
 end;
