@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CONFIG>
+  <grid version="3">
+    <saveoptions create="False" content="True" position="False"/>
+    <content>
+      <cells cellcount="14">
+        <cell1 row="1" text="Mittagsmenü 1" column="0"/>
+        <cell2 row="2" text="Mittagsmenü 2" column="0"/>
+        <cell3 row="5" text="Abendmenü 1" column="0"/>
+        <cell4 row="6" text="Abendmenü 2" column="0"/>
+        <cell5 row="7" text="Abendmenü 3" column="0"/>
+        <cell6 row="0" text="Normalkost" column="1"/>
+        <cell7 row="0" text="Reduktionskost" column="2"/>
+        <cell8 row="0" text="Leichte Vollkost" column="3"/>
+        <cell9 row="0" text="R LVK" column="4"/>
+        <cell10 row="0" text="1500 kCal" column="5"/>
+        <cell11 row="0" text="Stw Menü" column="6"/>
+        <cell12 row="0" text="Dm" column="7"/>
+        <cell13 row="0" text="RDm" column="8"/>
+        <cell14 row="0" text="Div 2" column="9"/>
+      </cells>
+    </content>
+  </grid>
+</CONFIG>

@@ -1,0 +1,344 @@
+object FormMain: TFormMain
+  Left = 390
+  Height = 600
+  Top = 122
+  Width = 732
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Speisenzähler'
+  ClientHeight = 580
+  ClientWidth = 732
+  KeyPreview = True
+  Menu = MenuMain
+  OnCreate = FormMainCreate
+  OnKeyPress = FormKeyPress
+  LCLVersion = '1.0.10.0'
+  object Label1: TLabel
+    Left = 17
+    Height = 16
+    Top = 11
+    Width = 38
+    Caption = 'Patient'
+    ParentColor = False
+  end
+  object TabInputDisplay: TTabControl
+    Left = 8
+    Height = 240
+    Top = 48
+    Width = 704
+    OnChange = TabInputDisplayChange
+    TabIndex = 0
+    Tabs.Strings = (
+      'Tag 4'
+      'Tag 5'
+      'Tag 6'
+      'Tag 7'
+      'Tag 8'
+      'Tag 9'
+      'Tag 10'
+    )
+    TabOrder = 0
+    object ShapeLunchActive: TShape
+      Left = 4
+      Height = 76
+      Top = 63
+      Width = 682
+      Brush.Color = clNone
+      Brush.Style = bsClear
+    end
+    object ShapeCurrentLunch: TShape
+      Left = 4
+      Height = 17
+      Top = 76
+      Width = 682
+      Brush.Color = clSilver
+      Visible = False
+    end
+    object Label11: TLabel
+      Left = 12
+      Height = 16
+      Top = 63
+      Width = 69
+      Caption = 'Mittagessen'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 12
+      Height = 16
+      Top = 141
+      Width = 68
+      Caption = 'Abendessen'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 12
+      Height = 16
+      Top = 94
+      Width = 98
+      Caption = '1 - Mittagsmenü 1'
+      ParentColor = False
+    end
+    object ShapeDinnerActive: TShape
+      Left = 4
+      Height = 80
+      Top = 141
+      Width = 682
+      Brush.Color = clNone
+      Brush.Style = bsClear
+      OnChangeBounds = ShapeDinnerActiveChangeBounds
+      Visible = False
+    end
+    object Label14: TLabel
+      Left = 12
+      Height = 16
+      Top = 113
+      Width = 98
+      Caption = '2 - Mittagsmenü 2'
+      ParentColor = False
+    end
+    object ShapeCurrentDinner: TShape
+      Left = 4
+      Height = 17
+      Top = 156
+      Width = 682
+      Brush.Color = clSilver
+      Visible = False
+    end
+    object ShapeVerticalSelection: TShape
+      Left = 132
+      Height = 189
+      Top = 32
+      Width = 63
+      Brush.Color = clSilver
+      Visible = False
+    end
+    object Label18: TLabel
+      Left = 12
+      Height = 16
+      Top = 157
+      Width = 109
+      Caption = '0 - kein Abendmenü'
+      ParentColor = False
+    end
+    object Label19: TLabel
+      Left = 12
+      Height = 16
+      Top = 77
+      Width = 114
+      Caption = '0 - kein Mittagsmenü'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 132
+      Height = 31
+      Top = 32
+      Width = 63
+      Alignment = taCenter
+      Caption = 'A'#13#10'Normalkost'
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 196
+      Height = 31
+      Top = 32
+      Width = 82
+      Alignment = taCenter
+      Caption = 'B'#13#10'Reduktionskost'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 300
+      Height = 31
+      Top = 32
+      Width = 84
+      Alignment = taCenter
+      Caption = 'C'#13#10'Leichte Vollkost'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 388
+      Height = 31
+      Top = 32
+      Width = 31
+      Alignment = taCenter
+      Caption = 'D'#13#10'R LVK'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 436
+      Height = 31
+      Top = 32
+      Width = 51
+      Alignment = taCenter
+      Caption = 'E'#13#10'1500 kCal'
+      ParentColor = False
+    end
+    object Label7: TLabel
+      Left = 508
+      Height = 31
+      Top = 32
+      Width = 54
+      Alignment = taCenter
+      Caption = 'F'#13#10'Stw Menu'
+      ParentColor = False
+    end
+    object Label8: TLabel
+      Left = 564
+      Height = 31
+      Top = 32
+      Width = 20
+      Alignment = taCenter
+      Caption = 'G'#13#10'Dm'
+      ParentColor = False
+    end
+    object Label9: TLabel
+      Left = 596
+      Height = 31
+      Top = 32
+      Width = 27
+      Alignment = taCenter
+      Caption = 'H'#13#10'RDm'
+      ParentColor = False
+    end
+    object Label10: TLabel
+      Left = 644
+      Height = 31
+      Top = 32
+      Width = 27
+      Alignment = taCenter
+      Caption = 'I'#13#10'Div 2'
+      ParentColor = False
+    end
+    object Label15: TLabel
+      Left = 12
+      Height = 16
+      Top = 173
+      Width = 93
+      Caption = '1 - Abendmenü 1'
+      ParentColor = False
+    end
+    object Label16: TLabel
+      Left = 12
+      Height = 16
+      Top = 189
+      Width = 93
+      Caption = '2 - Abendmenü 2'
+      ParentColor = False
+    end
+    object Label17: TLabel
+      Left = 12
+      Height = 16
+      Top = 205
+      Width = 93
+      Caption = '3 - Abendmenü 3'
+      ParentColor = False
+    end
+  end
+  object TabDayDisplay: TTabControl
+    Left = 8
+    Height = 256
+    Top = 320
+    Width = 704
+    TabIndex = 0
+    Tabs.Strings = (
+      'Tag 4'
+      'Tag 5'
+      'Tag 6'
+      'Tag 7'
+      'Tag 8'
+      'Tag 9'
+      'Tag 10'
+    )
+    TabOrder = 1
+    object GridData1: TStringGrid
+      Left = 28
+      Height = 200
+      Top = 36
+      Width = 658
+      Color = clDefault
+      ColCount = 10
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goSmoothScroll]
+      RowCount = 9
+      ScrollBars = ssNone
+      TabOrder = 1
+      ColWidths = (
+        98
+        72
+        92
+        95
+        47
+        64
+        64
+        35
+        41
+        47
+      )
+      Cells = (
+        14
+        0
+        1
+        'Mittagsmenü 1'
+        0
+        2
+        'Mittagsmenü 2'
+        0
+        5
+        'Abendmenü 1'
+        0
+        6
+        'Abendmenü 2'
+        0
+        7
+        'Abendmenü 3'
+        1
+        0
+        'Normalkost'
+        2
+        0
+        'Reduktionskost'
+        3
+        0
+        'Leichte Vollkost'
+        4
+        0
+        'R LVK'
+        5
+        0
+        '1500 kCal'
+        6
+        0
+        'Stw Menü'
+        7
+        0
+        'Dm'
+        8
+        0
+        'RDm'
+        9
+        0
+        'Div 2'
+      )
+    end
+  end
+  object MenuMain: TMainMenu
+    left = 520
+    object MenuFile: TMenuItem
+      Caption = 'Datei'
+      object MenuItemSettings: TMenuItem
+        Caption = 'Einstellungen'
+        OnClick = MenuItemSettingsClick
+      end
+      object MenuItem2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItemExit: TMenuItem
+        Caption = 'Beenden'
+        OnClick = MenuItemExitClick
+      end
+    end
+  end
+end
