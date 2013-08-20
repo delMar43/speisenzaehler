@@ -1,12 +1,12 @@
 object FormMain: TFormMain
-  Left = 206
-  Height = 734
-  Top = 49
+  Left = 293
+  Height = 601
+  Top = 137
   Width = 732
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Speisenzähler'
-  ClientHeight = 714
+  ClientHeight = 581
   ClientWidth = 732
   KeyPreview = True
   Menu = MenuMain
@@ -57,7 +57,7 @@ object FormMain: TFormMain
       Brush.Color = clSilver
     end
     object Label11: TLabel
-      Left = 12
+      Left = 11
       Height = 16
       Top = 63
       Width = 69
@@ -325,13 +325,13 @@ object FormMain: TFormMain
       )
     end
   end
-  object MemoDebug: TMemo
-    Left = 14
-    Height = 103
-    Top = 585
-    Width = 689
-    ReadOnly = True
-    ScrollBars = ssAutoBoth
+  object ButtonSave: TButton
+    Left = 639
+    Height = 24
+    Top = 320
+    Width = 73
+    Caption = 'Speichern'
+    OnClick = ButtonSaveClick
     TabOrder = 2
   end
   object MenuMain: TMainMenu

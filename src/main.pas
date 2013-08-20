@@ -5,13 +5,14 @@ unit Main;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynHighlighterPHP, Forms, Controls,
+  Classes, SysUtils, FileUtil, SynHighlighterPHP, Forms, Controls, LCLType,
   Dialogs, StdCtrls, Grids, ComCtrls, Menus, ExtCtrls, Day, Patient, DailySum;
 
 type
   { TFormMain }
 
   TFormMain = class(TForm)
+    ButtonSave: TButton;
     GridSums: TStringGrid;
     LabelCurrentPatientIndex: TLabel;
     Label10: TLabel;
@@ -32,7 +33,6 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    MemoDebug: TMemo;
     MenuFile: TMenuItem;
     MenuItemExit: TMenuItem;
     MenuItemSettings: TMenuItem;
@@ -45,6 +45,7 @@ type
     ShapeVerticalSelection: TShape;
     TabDayDisplay: TTabControl;
     TabInputDisplay: TTabControl;
+    procedure ButtonSaveClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure FormMainCreate(Sender: TObject);
     procedure MenuItemExitClick(Sender: TObject);
@@ -57,11 +58,11 @@ type
     procedure SelectMeal(MealIndex: integer);
     procedure SelectMealChoice(ChoiceIndex: integer);
     procedure GoToNextMeal();
+    function AskForSwitch(): boolean;
     procedure GoToPreviousMeal();
     procedure RenderInputDisplay();
     procedure RenderSumDisplay();
     procedure CreateNewPatient(NewPatientIndex: integer);
-    procedure Debug(Message: string);
   public
     { public declarations }
   end;
@@ -148,6 +149,10 @@ begin
 
 end;
 
+procedure TFormMain.ButtonSaveClick(Sender: TObject);
+begin
+end;
+
 procedure TFormMain.SelectMeal(MealIndex: integer);
 begin
   SelectedMealIndex:=MealIndex;
@@ -158,7 +163,10 @@ procedure TFormMain.SelectMealChoice(ChoiceIndex: integer);
 begin
   if (CurrentMealIsLunch) then
     begin
-      SelectedLunchIndex := ChoiceIndex;
+      if ChoiceIndex <= 2 then
+        begin
+          SelectedLunchIndex := ChoiceIndex;
+        end;
     end else begin
       SelectedDinnerIndex := ChoiceIndex;
     end;
@@ -170,38 +178,65 @@ procedure TFormMain.GoToNextMeal();
 var
   NewInputIndex: integer;
   CurrentDay: TDay;
+  SwitchToNextPatient: boolean;
+  SwitchToNextDay: boolean;
+  LastDayOfPatient: boolean;
 begin
   CurrentDay := CurrentPatient.GetDay(CurrentInputDayIndex);
 
   CurrentDay.MealIdx := SelectedMealIndex;
+  SwitchToNextPatient := false;
+  SwitchToNextDay := true;
 
   if (not CurrentMealIsLunch) then
     begin
       CurrentDay.DinnerIdx:=SelectedDinnerIndex;
       NewInputIndex := CurrentInputDayIndex +1;
 
-      if (NewInputIndex >= NrOfDays) then
+      LastDayOfPatient := NewInputIndex >= NrOfDays;
+      if (LastDayOfPatient) then
+        begin
+          SwitchToNextPatient := AskForSwitch();
+          if not SwitchToNextPatient then
+            begin
+              SwitchToNextDay := false;
+            end;
+        end;
+
+      if SwitchToNextPatient then
         begin
           NewInputIndex := 0;
-
           CreateNewPatient(CurrentPatientIndex+1);
         end;
 
-      CurrentInputDayIndex := NewInputIndex;
+      if SwitchToNextDay then
+        begin
+          CurrentInputDayIndex := NewInputIndex;
+        end;
     end else begin
       CurrentDay.LunchIdx:=SelectedLunchIndex;
     end;
 
-  CurrentMealIsLunch := not CurrentMealIsLunch;
+  if SwitchToNextDay then
+    begin
+      CurrentMealIsLunch := not CurrentMealIsLunch;
 
-  RenderInputDisplay();
+      RenderInputDisplay();
+    end;
+end;
+
+function TFormMain.AskForSwitch(): boolean;
+var
+  Reply: integer;
+begin
+  Reply := Application.MessageBox('Wollen Sie zum nächsten Patienten wechseln?', 'Alle Tage eingegeben', MB_ICONQUESTION + MB_YESNO);
+  AskForSwitch := Reply = IDYES;
 end;
 
 procedure TFormMain.GoToPreviousMeal();
 var
   SwitchMeals: boolean;
 begin
-  Debug('GoToPreviousMeal');
   SwitchMeals := True;
   if (CurrentMealIsLunch) then
     begin
@@ -239,8 +274,6 @@ begin
   FoodLabel := FoodLabelArray[SelectedMealIndex];
   LunchLabel := LunchLabelArray[SelectedLunchIndex];
   DinnerLabel := DinnerLabelArray[SelectedDinnerIndex];
-
-  LabelCurrentPatientIndex.Caption := 'Patient ' + IntToStr(CurrentPatientIndex +1);
 
   ShapeVerticalSelection.Width := FoodLabel.Width;
   ShapeVerticalSelection.Left := FoodLabel.Left;
@@ -343,6 +376,7 @@ begin
 
   CreateNewPatient(0);
 
+  RenderSumDisplay();
 end;
 
 procedure TFormMain.CreateNewPatient(NewPatientIndex: integer);
@@ -353,12 +387,10 @@ begin
   PatientArray[NewPatientIndex] := CurrentPatient;
 
   CurrentPatientIndex := NewPatientIndex;
+
+  LabelCurrentPatientIndex.Caption := 'Patient ' + IntToStr(CurrentPatientIndex +1);
 end;
 
-procedure TFormMain.Debug(Message: string);
-begin
-  MemoDebug.Lines.Add(IntToStr(MemoDebug.Lines.Count) + ': ' + Message);
-end;
 
 end.
 
