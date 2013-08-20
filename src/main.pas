@@ -63,6 +63,7 @@ type
     procedure RenderInputDisplay();
     procedure RenderSumDisplay();
     procedure CreateNewPatient(NewPatientIndex: integer);
+    procedure UpdateSelectedIndices();
   public
     { public declarations }
   end;
@@ -117,6 +118,8 @@ procedure TFormMain.TabInputDisplayChange(Sender: TObject);
 begin
   CurrentInputDayIndex := TabInputDisplay.TabIndex;
 
+  UpdateSelectedIndices();
+
   RenderInputDisplay();
 end;
 
@@ -151,6 +154,7 @@ end;
 
 procedure TFormMain.ButtonSaveClick(Sender: TObject);
 begin
+
 end;
 
 procedure TFormMain.SelectMeal(MealIndex: integer);
@@ -225,6 +229,17 @@ begin
     end else begin
       RenderSumDisplay();
     end;
+end;
+
+procedure TFormMain.UpdateSelectedIndices();
+var
+  CurrentDay: TDay;
+begin
+  CurrentDay := CurrentPatient.GetDay(CurrentInputDayIndex);
+
+  SelectedMealIndex := CurrentDay.MealIdx;
+  SelectedLunchIndex := CurrentDay.LunchIdx;
+  SelectedDinnerIndex := CurrentDay.DinnerIdx;
 end;
 
 function TFormMain.AskForSwitch(): boolean;
