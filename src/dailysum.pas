@@ -16,8 +16,8 @@ type
     FDinner1Sums: array of integer;
     FDinner2Sums: array of integer;
     FDinner3Sums: array of integer;
-    procedure IncSum(SumArray: array of integer; MealIndex: integer);
-    function GetSum(SumArray: array of integer; MealIndex: integer): integer;
+    procedure IncSum(var SumArray: array of integer; MealIndex: integer);
+    function GetSum(var SumArray: array of integer; MealIndex: integer): integer;
     procedure FillArrayWithZeroes(Target: array of integer);
   public
     constructor Create(NrOfMeals: integer);
@@ -62,7 +62,7 @@ begin
     Target[Index] := 0;
 end;
 
-procedure TDailySum.IncSum(SumArray: array of integer; MealIndex: integer);
+procedure TDailySum.IncSum(var SumArray: array of integer; MealIndex: integer);
 begin
   SumArray[MealIndex] := SumArray[MealIndex] +1;
 end;
@@ -92,7 +92,7 @@ begin
   IncSum(FDinner3Sums, MealIndex);
 end;
 
-function TDailySum.GetSum(SumArray: array of integer; MealIndex: integer): integer;
+function TDailySum.GetSum(var SumArray: array of integer; MealIndex: integer): integer;
 begin
   GetSum := SumArray[MealIndex];
 end;

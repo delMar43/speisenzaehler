@@ -9,12 +9,10 @@
         <Filename Value="speisenzaehler.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="speisenzaehler"/>
-        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="20"/>
-        <UsageCount Value="39"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="52"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -26,9 +24,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="254"/>
-        <CursorPos X="50" Y="262"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="268"/>
+        <CursorPos X="1" Y="274"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -38,9 +36,9 @@
         <UnitName Value="Day"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="10"/>
-        <CursorPos X="7" Y="37"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="13"/>
+        <CursorPos X="1" Y="33"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -49,9 +47,9 @@
         <UnitName Value="Patient"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="29" Y="18"/>
-        <UsageCount Value="30"/>
+        <TopLine Value="7"/>
+        <CursorPos X="48" Y="39"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -61,82 +59,80 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="13"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="38"/>
       </Unit4>
       <Unit5>
-        <Filename Value="D:\lazarus\fpc\2.6.2\source\packages\palmunits\src\control.pp"/>
-        <UnitName Value="control"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="160"/>
-        <CursorPos X="7" Y="160"/>
-        <UsageCount Value="9"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="D:\lazarus\lcl\comctrls.pp"/>
-        <UnitName Value="ComCtrls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="761"/>
-        <CursorPos X="14" Y="772"/>
-        <UsageCount Value="9"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="D:\lazarus\lcl\stdctrls.pp"/>
-        <UnitName Value="StdCtrls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1386"/>
-        <CursorPos X="27" Y="1399"/>
-        <UsageCount Value="9"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="D:\lazarus\lcl\controls.pp"/>
-        <UnitName Value="Controls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1003"/>
-        <CursorPos X="30" Y="1016"/>
-        <UsageCount Value="9"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="D:\lazarus\lcl\lclclasses.pp"/>
-        <UnitName Value="LCLClasses"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="35"/>
-        <CursorPos X="30" Y="48"/>
-        <UsageCount Value="9"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="D:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="322"/>
-        <CursorPos X="17" Y="340"/>
-        <UsageCount Value="10"/>
-      </Unit10>
-      <Unit11>
-        <Filename Value="main.lfm"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="23"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit11>
-      <Unit12>
         <Filename Value="dailysum.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DailySum"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="56"/>
-        <CursorPos X="12" Y="53"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="55"/>
+        <CursorPos X="16" Y="71"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="D:\lazarus\fpc\2.6.2\source\packages\palmunits\src\control.pp"/>
+        <UnitName Value="control"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="160"/>
+        <CursorPos X="7" Y="160"/>
+        <UsageCount Value="8"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="D:\lazarus\lcl\comctrls.pp"/>
+        <UnitName Value="ComCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="761"/>
+        <CursorPos X="14" Y="772"/>
+        <UsageCount Value="8"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="D:\lazarus\lcl\stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1386"/>
+        <CursorPos X="27" Y="1399"/>
+        <UsageCount Value="8"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="D:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1003"/>
+        <CursorPos X="30" Y="1016"/>
+        <UsageCount Value="8"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="D:\lazarus\lcl\lclclasses.pp"/>
+        <UnitName Value="LCLClasses"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="35"/>
+        <CursorPos X="30" Y="48"/>
+        <UsageCount Value="8"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="D:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="322"/>
+        <CursorPos X="17" Y="340"/>
+        <UsageCount Value="9"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="main.lfm"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit12>
       <Unit13>
         <Filename Value="D:\lazarus\lcl\include\customform.inc"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3047"/>
         <CursorPos X="1" Y="3066"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="12"/>
       </Unit13>
     </Units>
     <General>
@@ -144,141 +140,204 @@
     </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="82" Column="1" TopLine="60"/>
       </Position1>
       <Position2>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="65" Column="32" TopLine="60"/>
       </Position2>
       <Position3>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="67" Column="51" TopLine="48"/>
       </Position3>
       <Position4>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position4>
       <Position5>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="20" Column="20" TopLine="1"/>
       </Position5>
       <Position6>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="95" Column="31" TopLine="76"/>
       </Position6>
       <Position7>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="203" Column="1" TopLine="187"/>
       </Position7>
       <Position8>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="284" Column="40" TopLine="270"/>
       </Position8>
       <Position9>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="275" Column="1" TopLine="269"/>
       </Position9>
       <Position10>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="277" Column="1" TopLine="269"/>
       </Position10>
       <Position11>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="279" Column="1" TopLine="269"/>
       </Position11>
       <Position12>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="281" Column="1" TopLine="269"/>
       </Position12>
       <Position13>
-        <Filename Value="patient.pas"/>
-        <Caret Line="29" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="282" Column="1" TopLine="269"/>
       </Position13>
       <Position14>
-        <Filename Value="patient.pas"/>
-        <Caret Line="30" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="287" Column="1" TopLine="269"/>
       </Position14>
       <Position15>
-        <Filename Value="patient.pas"/>
-        <Caret Line="32" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="292" Column="1" TopLine="275"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="264" Column="2" TopLine="248"/>
+        <Caret Line="297" Column="1" TopLine="275"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="268" Column="1" TopLine="248"/>
+        <Caret Line="302" Column="1" TopLine="287"/>
       </Position17>
       <Position18>
         <Filename Value="main.pas"/>
-        <Caret Line="79" Column="33" TopLine="56"/>
+        <Caret Line="279" Column="1" TopLine="262"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="265" Column="38" TopLine="244"/>
+        <Caret Line="309" Column="1" TopLine="293"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="286" Column="68" TopLine="254"/>
+        <Caret Line="276" Column="33" TopLine="260"/>
       </Position20>
       <Position21>
-        <Filename Value="dailysum.pas"/>
-        <Caret Line="31" Column="25" TopLine="2"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="275" Column="1" TopLine="260"/>
       </Position21>
       <Position22>
-        <Filename Value="dailysum.pas"/>
-        <Caret Line="28" Column="48" TopLine="26"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="277" Column="1" TopLine="260"/>
       </Position22>
       <Position23>
-        <Filename Value="dailysum.pas"/>
-        <Caret Line="78" Column="17" TopLine="56"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="279" Column="1" TopLine="270"/>
       </Position23>
       <Position24>
-        <Filename Value="dailysum.pas"/>
-        <Caret Line="93" Column="20" TopLine="58"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="281" Column="1" TopLine="270"/>
       </Position24>
       <Position25>
-        <Filename Value="dailysum.pas"/>
-        <Caret Line="20" Column="15" TopLine="2"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="282" Column="1" TopLine="270"/>
       </Position25>
       <Position26>
-        <Filename Value="dailysum.pas"/>
-        <Caret Line="29" Column="1" TopLine="20"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="284" Column="1" TopLine="270"/>
       </Position26>
       <Position27>
         <Filename Value="dailysum.pas"/>
-        <Caret Line="97" Column="1" TopLine="59"/>
+        <Caret Line="72" Column="1" TopLine="55"/>
       </Position27>
       <Position28>
-        <Filename Value="main.pas"/>
-        <Caret Line="281" Column="69" TopLine="262"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="67" Column="18" TopLine="55"/>
       </Position28>
       <Position29>
         <Filename Value="dailysum.pas"/>
-        <Caret Line="53" Column="18" TopLine="17"/>
+        <Caret Line="68" Column="1" TopLine="55"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="280" Column="8" TopLine="256"/>
+        <Filename Value="dailysum.pas"/>
+        <Caret Line="71" Column="16" TopLine="55"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="main.pas"/>
-        <Line Value="266"/>
-      </Item1>
-    </BreakPoints>
-    <Watches Count="1">
+    <Watches Count="25">
       <Item1>
         <Expression Value="Create"/>
       </Item1>
+      <Item2>
+        <Expression Value="FDayArray"/>
+      </Item2>
+      <Item3>
+        <Expression Value="CurrentDay"/>
+      </Item3>
+      <Item4>
+        <Expression Value="CurrentPatient"/>
+      </Item4>
+      <Item5>
+        <Expression Value="NewDay"/>
+      </Item5>
+      <Item6>
+        <Expression Value="NewPatient"/>
+      </Item6>
+      <Item7>
+        <Expression Value="CurrentPatient.FDayArray"/>
+      </Item7>
+      <Item8>
+        <Expression Value="Sum"/>
+      </Item8>
+      <Item9>
+        <Expression Value="PatientArray"/>
+      </Item9>
+      <Item10>
+        <Expression Value="NewPatientIndex"/>
+      </Item10>
+      <Item11>
+        <Expression Value="ItDay"/>
+      </Item11>
+      <Item12>
+        <Expression Value="sum.flunch1sums"/>
+      </Item12>
+      <Item13>
+        <Expression Value="sum.flunch2sums"/>
+      </Item13>
+      <Item14>
+        <Expression Value="sum.fdinner1sums"/>
+      </Item14>
+      <Item15>
+        <Expression Value="sum.fdinner2sums"/>
+      </Item15>
+      <Item16>
+        <Expression Value="sum.fdinner3sums"/>
+      </Item16>
+      <Item17>
+        <Expression Value="PatientArray[0]"/>
+      </Item17>
+      <Item18>
+        <Expression Value="PatientArray[1]"/>
+      </Item18>
+      <Item19>
+        <Expression Value="PatientArray[2]"/>
+      </Item19>
+      <Item20>
+        <Expression Value="FDayArray[0]"/>
+      </Item20>
+      <Item21>
+        <Expression Value="FDayArray[1]"/>
+      </Item21>
+      <Item22>
+        <Expression Value="FDayArray[2]"/>
+      </Item22>
+      <Item23>
+        <Expression Value="FLunch1Sums"/>
+      </Item23>
+      <Item24>
+        <Expression Value="SumArray"/>
+      </Item24>
+      <Item25>
+        <Expression Value="FDinner1Sums"/>
+      </Item25>
     </Watches>
   </Debugging>
 </CONFIG>

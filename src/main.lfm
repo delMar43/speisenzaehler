@@ -1,12 +1,12 @@
 object FormMain: TFormMain
-  Left = 336
-  Height = 600
-  Top = 108
+  Left = 377
+  Height = 734
+  Top = 168
   Width = 732
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Speisenzähler'
-  ClientHeight = 580
+  ClientHeight = 714
   ClientWidth = 732
   KeyPreview = True
   Menu = MenuMain
@@ -55,7 +55,6 @@ object FormMain: TFormMain
       Top = 76
       Width = 682
       Brush.Color = clSilver
-      Visible = False
     end
     object Label11: TLabel
       Left = 12
@@ -109,7 +108,6 @@ object FormMain: TFormMain
       Top = 156
       Width = 682
       Brush.Color = clSilver
-      Visible = False
     end
     object ShapeVerticalSelection: TShape
       Left = 132
@@ -117,7 +115,6 @@ object FormMain: TFormMain
       Top = 32
       Width = 63
       Brush.Color = clSilver
-      Visible = False
     end
     object Label18: TLabel
       Left = 12
@@ -246,6 +243,7 @@ object FormMain: TFormMain
     Height = 256
     Top = 320
     Width = 704
+    OnChange = TabDayDisplayChange
     TabIndex = 0
     Tabs.Strings = (
       'Tag 4'
@@ -326,6 +324,15 @@ object FormMain: TFormMain
         'Div 2'
       )
     end
+  end
+  object MemoDebug: TMemo
+    Left = 14
+    Height = 103
+    Top = 585
+    Width = 689
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 2
   end
   object MenuMain: TMainMenu
     left = 520
