@@ -222,6 +222,8 @@ begin
       CurrentMealIsLunch := not CurrentMealIsLunch;
 
       RenderInputDisplay();
+    end else begin
+      RenderSumDisplay();
     end;
 end;
 
