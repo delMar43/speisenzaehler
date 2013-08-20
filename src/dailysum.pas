@@ -59,7 +59,9 @@ var
   Index: integer;
 begin
   for Index := 0 to Length(Target) do
-    Target[Index] := 0;
+    begin
+      Target[Index] := 0;
+    end;
 end;
 
 procedure TDailySum.IncSum(var SumArray: array of integer; MealIndex: integer);

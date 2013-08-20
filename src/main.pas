@@ -151,20 +151,16 @@ end;
 procedure TFormMain.SelectMeal(MealIndex: integer);
 begin
   SelectedMealIndex:=MealIndex;
-  Debug('SelectedMealIndex: ' + IntToStr(SelectedMealIndex));
   RenderInputDisplay();
 end;
 
 procedure TFormMain.SelectMealChoice(ChoiceIndex: integer);
 begin
-  Debug('SelectMealChoice');
   if (CurrentMealIsLunch) then
     begin
       SelectedLunchIndex := ChoiceIndex;
-      //CurrentPatient.GetDay(CurrentInputDayIndex).LunchIdx := ChoiceIndex;
     end else begin
       SelectedDinnerIndex := ChoiceIndex;
-      //CurrentPatient.GetDay(CurrentInputDayIndex).DinnerIdx := ChoiceIndex;
     end;
 
   RenderInputDisplay();
@@ -175,8 +171,6 @@ var
   NewInputIndex: integer;
   CurrentDay: TDay;
 begin
-  Debug('GoToNextMeal');
-
   CurrentDay := CurrentPatient.GetDay(CurrentInputDayIndex);
 
   CurrentDay.MealIdx := SelectedMealIndex;
@@ -235,7 +229,6 @@ var
   LunchLabel: TLabel;
   DinnerLabel: TLabel;
 begin
-  Debug('RenderInputDisplay');
   ShapeLunchActive.Visible := CurrentMealIsLunch;
   ShapeDinnerActive.Visible := not CurrentMealIsLunch;
 
@@ -268,10 +261,9 @@ var
   ItPatient: TPatient;
   ItDay: TDay;
   Sum: TDailySum;
+  DayMealIndex: integer;
   CurMealIndex: integer;
-  CurValue: string;
 begin
-  Debug('RenderSumDisplay');
   CalculatedDayIndex := TabDayDisplay.TabIndex;
 
   Sum := TDailySum.Create(NrOfMeals);
@@ -279,53 +271,43 @@ begin
   for ItPatient in PatientArray do
   begin
    ItDay := ItPatient.GetDay(CalculatedDayIndex);
+   DayMealIndex := ItDay.MealIdx -1;
    if (ItDay.LunchIdx = 1) then
      begin
-       Sum.IncLunch1Sum(ItDay.MealIdx);
-       Debug('IncLunch1Sum(' + IntToStr(ItDay.MealIdx) + ')');
+       Sum.IncLunch1Sum(DayMealIndex);
      end;
    if (ItDay.LunchIdx = 2) then
      begin
-       Sum.IncLunch2Sum(ItDay.MealIdx);
-       Debug('IncLunch2Sum(' + IntToStr(ItDay.MealIdx) + ')');
+       Sum.IncLunch2Sum(DayMealIndex);
      end;
    if (ItDay.DinnerIdx = 1) then
      begin
-       Sum.IncDinner1Sum(ItDay.MealIdx);
-       Debug('IncDinner1Sum(' + IntToStr(ItDay.MealIdx) + ')');
+       Sum.IncDinner1Sum(DayMealIndex);
      end;
    if (ItDay.DinnerIdx = 2) then
      begin
-       Sum.IncDinner2Sum(ItDay.MealIdx);
-       Debug('IncDinner2Sum(' + IntToStr(ItDay.MealIdx) + ')');
+       Sum.IncDinner2Sum(DayMealIndex);
      end;
    if (ItDay.DinnerIdx = 3) then
      begin
-       Sum.IncDinner3Sum(ItDay.MealIdx);
-       Debug('IncDinner3Sum(' + IntToStr(ItDay.MealIdx) + ')');
+       Sum.IncDinner3Sum(DayMealIndex);
      end;
   end;
 
   for CurMealIndex := 1 to NrOfMeals do
   begin
-   CurValue := IntToStr(Sum.GetLunch1Sum(CurMealIndex));
-   Debug('Lunch1: [' + IntToStr(CurMealIndex) + '] = ' + CurValue);
-   GridSums.Cells[CurMealIndex, 1] := CurValue;
-   CurValue := IntToStr(Sum.GetLunch2Sum(CurMealIndex));
-   Debug('Lunch2: [' + IntToStr(CurMealIndex) + '] = ' + CurValue);
-   GridSums.Cells[CurMealIndex, 2] := CurValue;
+   GridSums.Cells[CurMealIndex, 1] := IntToStr(Sum.GetLunch1Sum(CurMealIndex-1));
+   GridSums.Cells[CurMealIndex, 2] := IntToStr(Sum.GetLunch2Sum(CurMealIndex-1));
 
-   GridSums.Cells[CurMealIndex, 5] := IntToStr(Sum.GetDinner1Sum(CurMealIndex));
-   GridSums.Cells[CurMealIndex, 6] := IntToStr(Sum.GetDinner2Sum(CurMealIndex));
-   GridSums.Cells[CurMealIndex, 7] := IntToStr(Sum.GetDinner3Sum(CurMealIndex));
+   GridSums.Cells[CurMealIndex, 5] := IntToStr(Sum.GetDinner1Sum(CurMealIndex-1));
+   GridSums.Cells[CurMealIndex, 6] := IntToStr(Sum.GetDinner2Sum(CurMealIndex-1));
+   GridSums.Cells[CurMealIndex, 7] := IntToStr(Sum.GetDinner3Sum(CurMealIndex-1));
   end;
 
 end;
 
 procedure TFormMain.FormMainCreate(Sender: TObject);
 begin
-
-//  Debug('FormMainCreate');
 
   SelectedMealIndex := 1;
   SelectedLunchIndex := 0;
@@ -361,16 +343,11 @@ begin
 
   CreateNewPatient(0);
 
-//  RenderInputDisplay();
 end;
 
 procedure TFormMain.CreateNewPatient(NewPatientIndex: integer);
-var
-  NewPatient: TPatient;
 begin
-//  Debug('CreateNewPatient with index ' + IntToStr(NewPatientIndex));
-  NewPatient := TPatient.Create(NrOfDays);
-  CurrentPatient := NewPatient;
+  CurrentPatient := TPatient.Create(NrOfDays);
 
   SetLength(PatientArray, NewPatientIndex+1);
   PatientArray[NewPatientIndex] := CurrentPatient;
