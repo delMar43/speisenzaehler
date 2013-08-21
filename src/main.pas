@@ -64,6 +64,8 @@ type
     procedure RenderSumDisplay();
     procedure CreateNewPatient(NewPatientIndex: integer);
     procedure UpdateSelectedIndices();
+    function CalculateDailySum(CalculatedDayIndex: integer): TDailySum;
+    procedure GenerateCsvFiles();
   public
     { public declarations }
   end;
@@ -154,6 +156,55 @@ end;
 
 procedure TFormMain.ButtonSaveClick(Sender: TObject);
 begin
+  GenerateCsvFiles();
+end;
+
+procedure TFormMain.GenerateCsvFiles();
+var
+  DayIndex : integer;
+  MealIndex : integer;
+  CurMealLabel : string;
+  Sum : TDailySum;
+  FileVar : TextFile;
+begin
+
+  for DayIndex := 0 to NrOfDays-1 do
+  begin
+    Sum := CalculateDailySum(DayIndex);
+
+    AssignFile(FileVar, 'c:\tag' + IntToStr(DayIndex +1) + '.csv');
+
+    try
+    Rewrite(FileVar);
+    WriteLn(FileVar, 'Tag ' + IntToStr(DayIndex +1));
+    WriteLn(FileVar, GridSums.Cells[0, 1] + ';;' + GridSums.Cells[0, 2]);
+
+    for MealIndex := 1 to NrOfMeals do
+      begin
+        CurMealLabel := GridSums.Cells[MealIndex, 0];
+        WriteLn(FileVar, CurMealLabel + ';' + IntToStr(Sum.GetLunch1Sum(MealIndex-1)) + ';' + CurMealLabel + ';' + IntToStr(Sum.GetLunch2Sum(MealIndex-1)));
+      end;
+
+    WriteLn(FileVar, #13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10);
+    WriteLn(FileVar, ';;insgesamt;;' + #13#10);
+
+    WriteLn(FileVar, GridSums.Cells[0, 5] + ';;' + GridSums.Cells[0, 6] + ';;' + GridSums.Cells[0, 7]);
+
+    for MealIndex := 1 to NrOfMeals do
+      begin
+        CurMealLabel := GridSums.Cells[MealIndex, 0];
+        WriteLn(FileVar, CurMealLabel + ';' + IntToStr(Sum.GetDinner1Sum(MealIndex-1)) + ';' + CurMealLabel + ';' + IntToStr(Sum.GetDinner2Sum(MealIndex-1)) + ';' + CurMealLabel + ';' + IntToStr(Sum.GetDinner3Sum(MealIndex-1)));
+      end;
+
+    WriteLn(FileVar, #13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10);
+    WriteLn(FileVar, ';;insgesamt;;');
+
+    CloseFile(FileVar);
+    finally
+    end;
+
+  end;
+
 
 end;
 
@@ -308,41 +359,12 @@ end;
 procedure TFormMain.RenderSumDisplay();
 var
   CalculatedDayIndex: integer;
-  ItPatient: TPatient;
-  ItDay: TDay;
   Sum: TDailySum;
-  DayMealIndex: integer;
   CurMealIndex: integer;
 begin
   CalculatedDayIndex := TabDayDisplay.TabIndex;
 
-  Sum := TDailySum.Create(NrOfMeals);
-
-  for ItPatient in PatientArray do
-  begin
-   ItDay := ItPatient.GetDay(CalculatedDayIndex);
-   DayMealIndex := ItDay.MealIdx -1;
-   if (ItDay.LunchIdx = 1) then
-     begin
-       Sum.IncLunch1Sum(DayMealIndex);
-     end;
-   if (ItDay.LunchIdx = 2) then
-     begin
-       Sum.IncLunch2Sum(DayMealIndex);
-     end;
-   if (ItDay.DinnerIdx = 1) then
-     begin
-       Sum.IncDinner1Sum(DayMealIndex);
-     end;
-   if (ItDay.DinnerIdx = 2) then
-     begin
-       Sum.IncDinner2Sum(DayMealIndex);
-     end;
-   if (ItDay.DinnerIdx = 3) then
-     begin
-       Sum.IncDinner3Sum(DayMealIndex);
-     end;
-  end;
+  Sum := CalculateDailySum(CalculatedDayIndex);
 
   for CurMealIndex := 1 to NrOfMeals do
   begin
@@ -354,6 +376,41 @@ begin
    GridSums.Cells[CurMealIndex, 7] := IntToStr(Sum.GetDinner3Sum(CurMealIndex-1));
   end;
 
+end;
+
+function TFormMain.CalculateDailySum(CalculatedDayIndex: integer) : TDailySum;
+var
+  DayMealIndex: integer;
+  ItDay: TDay;
+  ItPatient: TPatient;
+begin
+  CalculateDailySum := TDailySum.Create(NrOfMeals);
+
+  for ItPatient in PatientArray do
+  begin
+   ItDay := ItPatient.GetDay(CalculatedDayIndex);
+   DayMealIndex := ItDay.MealIdx -1;
+   if (ItDay.LunchIdx = 1) then
+     begin
+       CalculateDailySum.IncLunch1Sum(DayMealIndex);
+     end;
+   if (ItDay.LunchIdx = 2) then
+     begin
+       CalculateDailySum.IncLunch2Sum(DayMealIndex);
+     end;
+   if (ItDay.DinnerIdx = 1) then
+     begin
+       CalculateDailySum.IncDinner1Sum(DayMealIndex);
+     end;
+   if (ItDay.DinnerIdx = 2) then
+     begin
+       CalculateDailySum.IncDinner2Sum(DayMealIndex);
+     end;
+   if (ItDay.DinnerIdx = 3) then
+     begin
+       CalculateDailySum.IncDinner3Sum(DayMealIndex);
+     end;
+  end;
 end;
 
 procedure TFormMain.FormMainCreate(Sender: TObject);
