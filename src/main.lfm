@@ -340,10 +340,12 @@ object FormMain: TFormMain
       Caption = 'Datei'
       object MenuItemSettings: TMenuItem
         Caption = 'Einstellungen'
+        Visible = False
         OnClick = MenuItemSettingsClick
       end
       object MenuItem2: TMenuItem
         Caption = '-'
+        Visible = False
       end
       object MenuItemExit: TMenuItem
         Caption = 'Beenden'

@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynHighlighterPHP, Forms, Controls, LCLType,
+  Classes, SysUtils, SynHighlighterPHP, Forms, Controls, LCLType, lconvencoding,
   Dialogs, StdCtrls, Grids, ComCtrls, Menus, ExtCtrls, Day, Patient, DailySum;
 
 type
@@ -166,6 +166,8 @@ var
   CurMealLabel : string;
   Sum : TDailySum;
   FileVar : TextFile;
+  sl : TStringList;
+  OriginalText : string;
 begin
 
   for DayIndex := 0 to NrOfDays-1 do
@@ -200,6 +202,14 @@ begin
     WriteLn(FileVar, ';;insgesamt;;');
 
     CloseFile(FileVar);
+
+    sl := TStringList.Create();
+
+    sl.LoadFromFile('c:\Tag' + IntToStr(DayIndex+1) + '.csv');
+    OriginalText := sl.Text;
+
+    sl.Text := UTF8ToCP1252(OriginalText);
+    sl.SaveToFile('c:\Tag' + IntToStr(DayIndex+1) + '.csv');
     finally
     end;
 
@@ -288,7 +298,6 @@ var
 begin
   CurrentDay := CurrentPatient.GetDay(CurrentInputDayIndex);
 
-  SelectedMealIndex := CurrentDay.MealIdx;
   SelectedLunchIndex := CurrentDay.LunchIdx;
   SelectedDinnerIndex := CurrentDay.DinnerIdx;
 end;
